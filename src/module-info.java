@@ -1,2 +1,6 @@
-module $MODULE_NAME$ {
+module Museu {
+    requires javafx.fxml;
+    requires javafx.controls;
+
+    opens sample;
 }
