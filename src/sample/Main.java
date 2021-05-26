@@ -23,10 +23,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("Tela de acesso");
+        primaryStage.setScene(new Scene(root, 500, 500));
         primaryStage.show();
-
+        boundaryToEntityLoginNoSistema();
 
         //GUILHERME, FAÇA AQUI A TELA!!!!!!
 
@@ -49,11 +49,11 @@ public class Main extends Application {
         //MONTAR A TELA E MOSTRAR AS INFORMAÇÕES DA COMPRA DE INGRESSO (VALOR, DATA DE VISITA ETC).
     }
 
-    private void boundaryToEntityLoginNoSistema() {
+    private Cidadao boundaryToEntityLoginNoSistema() {
         Cidadao visitanteLogin = new Cidadao();
 //        visitanteLogin.setLogin();
 //        visitanteLogin.setSenha();
-        entityToBoundaryLoginNoSistema(visitanteController.loginVisitante(visitanteLogin));
+          return visitanteLogin;
     }
 
     private void entityToBoundaryLoginNoSistema(Visitante visitante){

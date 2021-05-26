@@ -1,8 +1,30 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<GridPane fx:controller="sample.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <children>
+        <Label layoutX="279.0" layoutY="21.0" text="Sistema" />
+        <Label layoutX="266.0" layoutY="38.0" text="Zoomuseum" />
+        <TextField layoutX="73.0" layoutY="104.0" />
+        <TextField layoutX="73.0" layoutY="155.0" />
+        <TextField layoutX="73.0" layoutY="207.0" />
+        <TextField layoutX="73.0" layoutY="262.0" />
+        <TextField layoutX="365.0" layoutY="104.0" />
+        <TextField layoutX="365.0" layoutY="155.0" />
+        <TextField layoutX="365.0" layoutY="207.0" />
+        <TextField layoutX="365.0" layoutY="262.0" />
+        <Label layoutX="73.0" layoutY="87.0" text="Nome" />
+        <Label layoutX="73.0" layoutY="138.0" text="CPF" />
+        <Label layoutX="73.0" layoutY="192.0" text="RG" />
+        <Label layoutX="73.0" layoutY="245.0" text="Data Nascimento" />
+        <Label layoutX="365.0" layoutY="87.0" text="E-Mail" />
+        <Label layoutX="365.0" layoutY="138.0" text="Telefone" />
+        <Label layoutX="365.0" layoutY="192.0" text="Senha" />
+        <Label layoutX="365.0" layoutY="245.0" text="Confirmar senha" />
+        <Button layoutX="243.0" layoutY="331.0" mnemonicParsing="false" text="Confimar Cadastro" />
+    </children>
+</Pane>
