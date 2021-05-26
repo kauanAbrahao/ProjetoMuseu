@@ -1,6 +1,7 @@
 package controller;
 
 import entities.Aluno;
+import entities.Cidadao;
 import entities.Professor;
 import entities.Visitante;
 
@@ -20,18 +21,25 @@ public class VisitanteController {
         if (visitante!=null){
             visitantesCadastrados.add(visitante);
         }
+    } public void cadastrarVisitante(Cidadao visitante){
+        if (visitante!=null){
+            visitantesCadastrados.add(visitante);
+        }
     }
 
     //SUBSTITUIR POR DAO DEPOIS
-    public Visitante loginVisitante(String loginOuCpf, String senha){
+    public Visitante loginVisitante(Visitante visitanteLogin){
         for (Visitante visitante: visitantesCadastrados){
-            if((visitante.getLogin().equals(loginOuCpf) || visitante.getCpf().equals(loginOuCpf)
-                    && visitante.getSenha().equals(senha))){
+            if((visitante.getLogin().equals(visitanteLogin.getLogin()) || visitante.getCpf().equals(visitanteLogin.getLogin())
+                    && visitante.getSenha().equals(visitanteLogin.getSenha()))){
                 return visitante;
             }
         }
         return null;
     }
+
+
+
 
 
 }

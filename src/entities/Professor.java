@@ -5,23 +5,14 @@ public class Professor extends Visitante {
     private boolean ativo;
     private String instEnsino;
 
-    @Override
-    public void comprarIngresso() {
-        if(this.getVisita().getIngresso() != null){
-            //jogar na tela que ele já tem um ingresso!
-        } else {
-            visita = new Visita();
-            visita.obtemIngresso();
-        }
-    }
 
     @Override
-    public void calcularValorIngresso() {
+    public double calcularValorIngresso(Ingresso ingresso) {
         if(this.getVisita().getIngresso() != null){
             this.setValorTotal(calcularDesconto());
         } else {
-            return;
         }
+            return 0.0;
     }
 
     private double calcularDesconto() {

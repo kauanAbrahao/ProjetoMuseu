@@ -15,8 +15,7 @@ public abstract class Visitante {
 
     Visita visita;
 
-    public abstract void comprarIngresso();
-    public abstract void calcularValorIngresso();
+    public abstract double calcularValorIngresso(Ingresso ingresso);
 
 
     public double getValorTotal() {
