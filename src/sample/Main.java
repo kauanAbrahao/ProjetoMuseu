@@ -15,6 +15,10 @@ import java.time.LocalDate;
 public class Main extends Application {
 
     //fazer label, botão etc
+    //
+    //
+    //
+    //
 
     VisitanteController visitanteController = new VisitanteController();
     IngressoController ingressoController = new IngressoController();
@@ -43,22 +47,30 @@ public class Main extends Application {
         LocalDate MUDAR_ESSA_VARIAVEL_PARA_A_LABEL_DEPOIS = LocalDate.now();
         boundaryToEntityCompraIngresso(ingressoController.comprarIngresso
                 (this.visitanteDoSistema, MUDAR_ESSA_VARIAVEL_PARA_A_LABEL_DEPOIS));
-
-
     }
+
+    public void startIngresso(Stage primaryStage) throws Exception{
+        //Tela de Ingresso
+    }
+
+//    ----------------------------------------------------------------------------------------------------------
+
 
     private void boundaryToEntityCompraIngresso(Visitante comprarIngresso) {
         //MONTAR A TELA E MOSTRAR AS INFORMAÇÕES DA COMPRA DE INGRESSO (VALOR, DATA DE VISITA ETC).
     }
 
 
-    private void entityToBoundaryLoginNoSistema(Visitante visitante){
+    private void entityToBoundaryLoginNoSistema(Visitante visitante) throws Exception {
         if (visitante != null){
             //mostra na telinha que o login foi sucesso e vai para a próxima tela
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setContentText("Bem vindo, " + visitante.getNome() + " !");
             alert.show();
             this.visitanteDoSistema = visitante;
+            //CHAMAR A TELA QUE SERÁ A DE COMPRA DE INGRESSO ETC
+            this.startIngresso(new Stage());
+
         } else {
             //msotra na telinha que deu ruim e fica na mesma tela.
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -68,6 +80,7 @@ public class Main extends Application {
     }
 
     private Visitante boundaryToEntityRegistroNoSistema() {
+
         try{
             Cidadao visitante = new Cidadao();
             //Os parâmetros para os sets são os label.getText() da tela
