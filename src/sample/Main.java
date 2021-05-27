@@ -8,35 +8,61 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
 
 public class Main extends Application {
 
-    //fazer label, botão etc
-    //
-    //
-    //
-    //
+
+    //Primeira tela
+    TextField textCpf = new TextField();
+    TextField textSenha = new TextField();
+    Label sistema = new Label("Sistema Zoomuseum");
+    Button btnCadastrar = new Button("Cadastrar");
+    Button btnAcessar = new Button("Acessar");
 
     VisitanteController visitanteController = new VisitanteController();
     IngressoController ingressoController = new IngressoController();
     Visitante visitanteDoSistema = new Cidadao();
 
+    //Segunda Tela
+
+
+
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Tela de acesso");
-        primaryStage.setScene(new Scene(root, 500, 500));
+    public void start(Stage primaryStage) throws Exception {
+        GridPane gridPane = new GridPane();
+        Scene scene = new Scene(gridPane, 400, 400);
+
+        gridPane.add(sistema, 1, 1);
+        gridPane.add(textCpf, 2, 2);
+        gridPane.add(btnAcessar, 2, 2);
+        gridPane.add(textSenha, 3, 3);
+        gridPane.add(btnCadastrar, 4, 4);
+
+        //Isso é a primeira tela
+        btnAcessar.setOnAction((e)-> {
+            try {
+                this.entityToBoundaryLoginNoSistema
+                        (visitanteController.loginVisitante(textCpf.getText(), textSenha.getText()));
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+
+        btnCadastrar.setOnAction((e)-> visitanteController.cadastrarVisitante(boundaryToEntityRegistroNoSistema()));
+
+        primaryStage.setScene(scene);
         primaryStage.show();
 
         //GUILHERME, FAÇA AQUI A TELA!!!!!!
 
-        //Isso é a primeira tela
-        //apertei o botão: btnLogin.setOnAction((e)->entityToBoundaryLoginNoSistema
-        // (visitanteController.loginVisitante(labelLoginOuCpf, loginSenha);
 
         //Essa é a segunda tela
         //apertei o botão: btnCadastra.setOnAction((e)-> visitanteController.cadastraVisitante(boundaryToEntityLoginNoSistema());
@@ -79,21 +105,21 @@ public class Main extends Application {
         }
     }
 
-    private Visitante boundaryToEntityRegistroNoSistema() {
+    private Cidadao boundaryToEntityRegistroNoSistema() {
 
         try{
             Cidadao visitante = new Cidadao();
             //Os parâmetros para os sets são os label.getText() da tela
-//        visitante.setCpf();
-//        visitante.setEmail();
-//        visitante.setDatanasc();
-//        visitante.setNome();
-//        visitante.setRg();
-//        visitante.setTelefone();
-//        //Login e senha
-//        visitante.setLogin();
-//        visitante.setSenha();
-            return visitante;
+        visitante.setCpf("123");
+        visitante.setEmail("email");
+        visitante.setDatanasc(LocalDate.now());
+        visitante.setNome("Nome");
+        visitante.setRg("321");
+        visitante.setTelefone("12345");
+        //Login e senha
+        visitante.setLogin("admin");
+        visitante.setSenha("admin");
+        return visitante;
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Erro! Por favor, verifique as informações inseridas");
