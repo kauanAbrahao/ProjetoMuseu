@@ -4,6 +4,7 @@ import controller.IngressoController;
 import controller.VisitanteController;
 import entities.*;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -75,8 +77,48 @@ public class Main extends Application {
                 (this.visitanteDoSistema, MUDAR_ESSA_VARIAVEL_PARA_A_LABEL_DEPOIS));
     }
 
-    public void startIngresso(Stage primaryStage) throws Exception{
-        //Tela de Ingresso
+    public void startCadastro(Stage primaryStage, Visitante visitanteCadastro) throws Exception{
+        TextField textCpf = new TextField("cpf");
+        TextField textEmail = new TextField("email");
+        TextField textNome = new TextField("nome");
+        TextField textRg = new TextField("rg");
+        TextField textTelefone = new TextField();
+        TextField textLogin = new TextField("login");
+        TextField textSenha = new TextField("senha");
+
+        Button btnCadastrar = new Button("Cadastrar");
+        Button btnVoltar = new Button("Voltar");
+
+        GridPane gridPane = new GridPane();
+        Scene scene = new Scene(gridPane, 400, 400);
+
+
+        gridPane.add(textCpf, 1, 1);
+        gridPane.add(textEmail, 2, 2);
+        gridPane.add(textNome, 2, 2);
+        gridPane.add(textRg, 3, 3);
+        gridPane.add(textLogin, 4, 4);
+        gridPane.add(textSenha, 4, 5);
+        gridPane.add(btnCadastrar, 6, 6);
+
+        btnCadastrar.setOnAction((e)->setParametros(visitanteCadastro));
+        btnVoltar.setOnAction((e)-> Platform.exit());
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private void setParametros(Visitante visitante) {
+        visitante.setCpf("123");
+        visitante.setEmail("email");
+        visitante.setDatanasc(LocalDate.now());
+        visitante.setNome("Nome");
+        visitante.setRg("321");
+        visitante.setTelefone("12345");
+        //Login e senha
+        visitante.setLogin("admin");
+        visitante.setSenha("admin");
+        return;
     }
 
 //    ----------------------------------------------------------------------------------------------------------
@@ -95,7 +137,7 @@ public class Main extends Application {
             alert.show();
             this.visitanteDoSistema = visitante;
             //CHAMAR A TELA QUE SERÁ A DE COMPRA DE INGRESSO ETC
-            this.startIngresso(new Stage());
+//            this.startIngresso(new Stage());
 
         } else {
             //msotra na telinha que deu ruim e fica na mesma tela.
@@ -109,16 +151,7 @@ public class Main extends Application {
 
         try{
             Cidadao visitante = new Cidadao();
-            //Os parâmetros para os sets são os label.getText() da tela
-        visitante.setCpf("123");
-        visitante.setEmail("email");
-        visitante.setDatanasc(LocalDate.now());
-        visitante.setNome("Nome");
-        visitante.setRg("321");
-        visitante.setTelefone("12345");
-        //Login e senha
-        visitante.setLogin("admin");
-        visitante.setSenha("admin");
+            this.startCadastro(new Stage(), visitante);
         return visitante;
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);

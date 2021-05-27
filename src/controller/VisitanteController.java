@@ -32,6 +32,7 @@ public class VisitanteController {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setContentText("Cadastro realizado com sucesso!");
         }
+
     }
 
     //SUBSTITUIR POR DAO DEPOIS
