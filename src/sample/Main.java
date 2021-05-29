@@ -2,39 +2,54 @@ package sample;
 
 import controller.IngressoController;
 import controller.VisitanteController;
-import entities.*;
+import entities.Cidadao;
+import entities.Visitante;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
 
 public class Main extends Application {
 
+    VisitanteController visitanteController = new VisitanteController();
 
     //Primeira tela
     TextField textCpf = new TextField();
     TextField textSenha = new TextField();
     Label sistema = new Label("Sistema Zoomuseum");
+    Label CPF = new Label("CPF");
+    Label Senha = new Label("Senha");
     Button btnCadastrar = new Button("Cadastrar");
     Button btnAcessar = new Button("Acessar");
 
-    VisitanteController visitanteController = new VisitanteController();
     IngressoController ingressoController = new IngressoController();
     Visitante visitanteDoSistema = new Cidadao();
 
     //Segunda Tela
+        TextField textCpfCadastro = new TextField();
+        TextField textEmailCadastro = new TextField();
+        TextField textNomeCadastro = new TextField();
+        TextField textRgCadastro = new TextField();
+        TextField textTelefoneCadastro = new TextField();
+        TextField textLoginCadastro = new TextField();
+        TextField textSenhaCadastro = new TextField();
+        Label CPFCadastro = new Label("CPF");
+        Label SenhaCadastro = new Label("Senha");
+        Label RG = new Label("RG");
+        Label Nome = new Label("Nome");
+        Label Login = new Label("Login");
+        Label EMail = new Label("E-Mail");
+        Label Telefone = new Label("Telefone");
+        Button btnCadastrar2 = new Button("Cadastrar");
 
-
+        Button btnVoltar = new Button("Voltar");
 
 
     @Override
@@ -42,11 +57,13 @@ public class Main extends Application {
         GridPane gridPane = new GridPane();
         Scene scene = new Scene(gridPane, 400, 400);
 
-        gridPane.add(sistema, 1, 1);
-        gridPane.add(textCpf, 2, 2);
-        gridPane.add(btnAcessar, 2, 2);
-        gridPane.add(textSenha, 3, 3);
-        gridPane.add(btnCadastrar, 4, 4);
+        gridPane.add(sistema, 7, 3);
+        gridPane.add(CPF, 3, 6);
+        gridPane.add(Senha, 8, 6);
+        gridPane.add(textCpf, 3, 7);
+        gridPane.add(btnAcessar, 3, 9);
+        gridPane.add(textSenha, 8, 7);
+        gridPane.add(btnCadastrar, 8, 9);
 
         //Isso é a primeira tela
         btnAcessar.setOnAction((e)-> {
@@ -58,68 +75,48 @@ public class Main extends Application {
             }
         });
 
-        btnCadastrar.setOnAction((e)-> visitanteController.cadastrarVisitante(boundaryToEntityRegistroNoSistema()));
+        btnCadastrar.setOnAction((e)-> {
+            try {
+                this.startCadastro(new Stage());
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
 
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        //GUILHERME, FAÇA AQUI A TELA!!!!!!
 
-
-        //Essa é a segunda tela
-        //apertei o botão: btnCadastra.setOnAction((e)-> visitanteController.cadastraVisitante(boundaryToEntityLoginNoSistema());
-        boundaryToEntityRegistroNoSistema();
-
-        //Terceira tela (compra de ingresso)
-        //Pegar data de uma label na tela
-        LocalDate MUDAR_ESSA_VARIAVEL_PARA_A_LABEL_DEPOIS = LocalDate.now();
-        boundaryToEntityCompraIngresso(ingressoController.comprarIngresso
-                (this.visitanteDoSistema, MUDAR_ESSA_VARIAVEL_PARA_A_LABEL_DEPOIS));
     }
 
-    public void startCadastro(Stage primaryStage, Visitante visitanteCadastro) throws Exception{
-        TextField textCpf = new TextField("cpf");
-        TextField textEmail = new TextField("email");
-        TextField textNome = new TextField("nome");
-        TextField textRg = new TextField("rg");
-        TextField textTelefone = new TextField();
-        TextField textLogin = new TextField("login");
-        TextField textSenha = new TextField("senha");
-
-        Button btnCadastrar = new Button("Cadastrar");
-        Button btnVoltar = new Button("Voltar");
+    public void startCadastro(Stage primaryStage) throws Exception{
 
         GridPane gridPane = new GridPane();
         Scene scene = new Scene(gridPane, 400, 400);
 
+        gridPane.add(CPFCadastro, 1, 1);
+        gridPane.add(textCpfCadastro, 1, 2);
+        gridPane.add(EMail, 5, 1);
+        gridPane.add(textEmailCadastro, 5, 2);
+        gridPane.add(Nome, 1, 3);
+        gridPane.add(textNomeCadastro, 1, 4);
+        gridPane.add(RG, 5, 3);
+        gridPane.add(textRgCadastro, 5, 4);
+        gridPane.add(Login, 1, 5);
+        gridPane.add(textLoginCadastro, 1, 6);
+        gridPane.add(Senha, 5, 5);
+        gridPane.add(textSenhaCadastro, 5, 6);
+        gridPane.add(btnCadastrar2, 5, 18);
+        gridPane.add(btnVoltar, 1, 18);
 
-        gridPane.add(textCpf, 1, 1);
-        gridPane.add(textEmail, 2, 2);
-        gridPane.add(textNome, 2, 2);
-        gridPane.add(textRg, 3, 3);
-        gridPane.add(textLogin, 4, 4);
-        gridPane.add(textSenha, 4, 5);
-        gridPane.add(btnCadastrar, 6, 6);
-
-        btnCadastrar.setOnAction((e)->setParametros(visitanteCadastro));
-        btnVoltar.setOnAction((e)-> Platform.exit());
+        btnCadastrar2.setOnAction((e)->visitanteController.cadastrarVisitante(boundaryToEntityRegistroNoSistema()));
+        btnVoltar.setOnAction((e)-> primaryStage.close());
 
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private void setParametros(Visitante visitante) {
-        visitante.setCpf("123");
-        visitante.setEmail("email");
-        visitante.setDatanasc(LocalDate.now());
-        visitante.setNome("Nome");
-        visitante.setRg("321");
-        visitante.setTelefone("12345");
-        //Login e senha
-        visitante.setLogin("admin");
-        visitante.setSenha("admin");
-        return;
-    }
+
 
 //    ----------------------------------------------------------------------------------------------------------
 
@@ -148,11 +145,18 @@ public class Main extends Application {
     }
 
     private Cidadao boundaryToEntityRegistroNoSistema() {
-
         try{
             Cidadao visitante = new Cidadao();
-            this.startCadastro(new Stage(), visitante);
-        return visitante;
+            visitante.setCpf("123");
+            visitante.setEmail("email");
+            visitante.setDatanasc(LocalDate.now());
+            visitante.setNome("Nome");
+            visitante.setRg("321");
+            visitante.setTelefone("12345");
+            //Login e senha
+            visitante.setLogin(textLoginCadastro.getText());
+            visitante.setSenha(textSenhaCadastro.getText());
+            return visitante;
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Erro! Por favor, verifique as informações inseridas");

@@ -31,6 +31,7 @@ public class VisitanteController {
             visitantesCadastrados.add(visitante);
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setContentText("Cadastro realizado com sucesso!");
+            alert.show();
         }
 
     }
